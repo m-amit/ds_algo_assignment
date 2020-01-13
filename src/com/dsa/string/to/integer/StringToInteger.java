@@ -4,11 +4,11 @@ public class StringToInteger {
 
   public static void main(String[] args) {
     //valid input
-    System.out.println(convertIntegerToString("1234"));
-    //valid negaive inpur
-    System.out.println(convertIntegerToString("-1234"));
-    //invalid input
     System.out.println(convertIntegerToString("-123a4"));
+    //valid negaive inpur
+    //System.out.println(convertIntegerToString("-1234"));
+    //invalid input
+    //System.out.println(convertIntegerToString("-123a4"));
   }
 
   static int convertIntegerToString(String s) {
@@ -29,8 +29,8 @@ public class StringToInteger {
         result = result * 10 + digit;
         i++;
       } else {
-        System.out.println("invalid string");
-        return 0;
+        //System.out.println("invalid string");
+        return result;
       }
     }
     if (isNegative) {
