@@ -44,6 +44,7 @@ public class DStack<E> {
     E obj = peek();
     elementData[top] = null;
     top--;
+    shrinkCapacity();
     return obj;
   }
 
@@ -55,6 +56,12 @@ public class DStack<E> {
   public E peek() {
     E obj = (E) elementData[top];
     return obj;
+  }
+
+  private void shrinkCapacity(){
+    if(elementData.length > top +10){
+      elementData = Arrays.copyOf(elementData, top +10);
+    }
   }
 
   private void checkCapacity() {
