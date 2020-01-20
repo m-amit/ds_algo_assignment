@@ -20,10 +20,11 @@ public class InfixToPostFixConversion {
   public static final List HIGH = Arrays.asList('*', '/');
 
   private static Stack<Character> operatorStack = new Stack<>();
+  static StringBuilder result= new StringBuilder();
 
   public static void main(String[] args) {
     String expression = "A+B*(C/(E-F))";
-    System.out.print("POST fix of " + expression + " is ");
+    result.append("POST fix of " + expression + " is ");
     char[] exp = expression.replaceAll(" ", "").toCharArray();
     for (char ch : exp) {
       if (OPERATORS.contains(ch)) {
@@ -33,10 +34,11 @@ public class InfixToPostFixConversion {
         }
         isOfHigherPrecedence(ch, operatorStack.peek());
       } else {
-        System.out.print(ch);
+        result.append(ch);
       }
     }
     popAll();
+    System.out.println(result.toString());
   }
 
   // a is incoming and b is current
@@ -48,7 +50,7 @@ public class InfixToPostFixConversion {
     } else if ((HIGH.contains(incoming) && HIGH.contains(current)) || (LOW.contains(incoming) && LOW.contains(current))) {
       //if both incoming and current are with same precedence will first pop
       // the current and push the incoming comparing with 2nd peek
-      System.out.print(operatorStack.pop());
+      result.append(operatorStack.pop());
       if (operatorStack.isEmpty()) {
         operatorStack.push(incoming);
         return;
@@ -56,7 +58,7 @@ public class InfixToPostFixConversion {
       isOfHigherPrecedence(incoming, operatorStack.peek());
     } else if (HIGH.contains(current) && LOW.contains(incoming)) {
       //if current is highest simply pop print and then push
-      System.out.print(operatorStack.pop());
+      result.append(operatorStack.pop());
       if (operatorStack.isEmpty()) {
         return;
       }
@@ -74,7 +76,7 @@ public class InfixToPostFixConversion {
       operatorStack.pop();
       return;
     }
-    System.out.print(operatorStack.pop());
+    result.append(operatorStack.pop());
     popUntilClosingBracesFound();
   }
 
@@ -82,7 +84,7 @@ public class InfixToPostFixConversion {
     if (operatorStack.isEmpty()) {
       return;
     }
-    System.out.print(operatorStack.pop());
+    result.append(operatorStack.pop());
     popAll();
   }
 
