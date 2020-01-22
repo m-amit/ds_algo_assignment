@@ -1,5 +1,7 @@
 package com.dsa.array.nge;
 
+import java.util.Stack;
+
 /**
  * @author Amit Mishra
  * @Date 16 jan 2020
@@ -13,6 +15,12 @@ public class NGEArrays {
    * @param args the input arguments
    */
   public static void main(String[] args) {
+    nextNGE();
+    nextNGEUsingStack();
+  }
+
+  //here time complexity is o(n2)
+  private static void nextNGE() {
     //int [] arr = new int[]{11, 13, 21, 3, 42, 5};
     int [] arr = new int[]{4, 5, 2, 25, 7, 32, 8, 6};
 
@@ -26,6 +34,29 @@ public class NGEArrays {
         }
       }
       System.out.println(currentElement +"-"+nextBig);
+    }
+  }
+
+  //time complexity is o(n)
+  private static void nextNGEUsingStack() {
+    int[] arr = new int[] {4, 5, 2, 25, 7, 32, 8, 6};
+    Stack<Integer> s = new Stack<>();
+    for (int i = 0; i < arr.length; i++) {
+      int currentElement = arr[i];
+      int nextBig = -1;
+      if (s.isEmpty()) {
+        s.push(currentElement);
+        continue;
+      }
+      while (!s.isEmpty() && s.peek() < currentElement) {
+        System.out.println(s.pop() + "-" + currentElement);
+      }
+      if (i + 1 < arr.length)
+        s.push(currentElement);
+      else
+        while (!s.isEmpty())
+          System.out.println(s.pop() + "-" + nextBig);
+
     }
   }
 }
