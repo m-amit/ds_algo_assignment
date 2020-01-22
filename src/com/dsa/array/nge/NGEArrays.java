@@ -15,7 +15,7 @@ public class NGEArrays {
    * @param args the input arguments
    */
   public static void main(String[] args) {
-    nextNGE();
+    //nextNGE();
     nextNGEUsingStack();
   }
 
@@ -43,7 +43,6 @@ public class NGEArrays {
     Stack<Integer> s = new Stack<>();
     for (int i = 0; i < arr.length; i++) {
       int currentElement = arr[i];
-      int nextBig = -1;
       if (s.isEmpty()) {
         s.push(currentElement);
         continue;
@@ -51,12 +50,9 @@ public class NGEArrays {
       while (!s.isEmpty() && s.peek() < currentElement) {
         System.out.println(s.pop() + "-" + currentElement);
       }
-      if (i + 1 < arr.length)
         s.push(currentElement);
-      else
-        while (!s.isEmpty())
-          System.out.println(s.pop() + "-" + nextBig);
-
     }
+    while (!s.isEmpty())
+      System.out.println(s.pop() + "-" + -1);
   }
 }
