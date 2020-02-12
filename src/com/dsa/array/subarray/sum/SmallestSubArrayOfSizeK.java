@@ -1,10 +1,31 @@
 package com.dsa.array.subarray.sum;
 
+import java.util.HashMap;
+
 public class SmallestSubArrayOfSizeK {
 
   public static void main(String[] args) {
-    int[] arr = {10, 4, 3, -7 , 6, 3, 8 , 1};
-    findSubArWithSumK(arr, 0);
+    int[] arr = {10, 4, 3, 2 , 6, 3, 8 , 1};
+    //findSubArWithSumK(arr, 0);
+    findSubArrayWithSumK(arr, 9);
+  }
+
+  static void findSubArrayWithSumK(int[] arr, int k){
+    int sum = 0;
+    int result = 0;
+    HashMap<Integer,Integer> arr_count = new HashMap<>();
+
+    for(int i=0;i<arr.length;i++){
+
+      sum += arr[i];
+
+      if(arr_count.containsKey(sum-k)){
+        result += arr_count.get(sum-k);
+      }
+      arr_count.put(sum, arr_count.getOrDefault(sum, 0)+1);
+    }
+
+    System.out.println(result);
   }
 
   //will work for values greater than 0
