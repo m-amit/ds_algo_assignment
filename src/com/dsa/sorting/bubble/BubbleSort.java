@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class BubbleSort {
 
   public static void main(String[] args) {
-    int[] arr = new int[] {1, 2, 5, 7, 9, 6, 4, 3, 8};
+    int[] arr = new int[] {1, 2, 5, 7, 9, 6, 4, 3, 8, 9};
     int[] sorted = bubbleSort(arr);
 
     System.out.println(Arrays.toString(sorted));
@@ -20,13 +20,17 @@ public class BubbleSort {
       int s = 0;
       while (s != i) {
         if (arr[s] > arr[s + 1]) {
-          int k = arr[s + 1];
-          arr[s + 1] = arr[s];
-          arr[s] = k;
+          swap(arr, s);
         }
         s++;
       }
     }
     return arr;
+  }
+
+  private static void swap(int[] arr, int s) {
+    int k = arr[s + 1];
+    arr[s + 1] = arr[s];
+    arr[s] = k;
   }
 }

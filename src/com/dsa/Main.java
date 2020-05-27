@@ -1,14 +1,37 @@
 package com.dsa;
 
+import com.dsa.linkedlist.ssl.impl.SingleLinkedList;
+
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class Main {
 
   public static void main(String[] args) {
 
+    String txt = "{[]{()}}";
+
+    char[] ch = txt.toCharArray();
+    Stack<Character> s = new Stack<>();
+    for(char c : ch){
+      if(s.isEmpty()){
+        s.push(c);
+        continue;
+      }
+      if(s.peek() - c == -1 || s.peek() - c == -2){
+        s.pop();
+        continue;
+      }
+      s.push(c);
+    }
+    if(s.isEmpty()){
+      System.out.println("Balanced");
+    }else{
+      System.out.println("Unbalanced");
+    }
   }
 
   //only positive number

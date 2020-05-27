@@ -200,4 +200,18 @@ public class SingleLinkedList<E> {
     return found;
   }
 
+  public boolean reverseInChunks(int chunk) {
+    reverseChunk(head, chunk);
+    return true;
+  }
+
+  private Node reverseChunk(Node node, int chunk) {
+    if(node == null || node.getNextNode() == null){
+      return node;
+    }
+
+    return null;
+
+  }
+
 }
